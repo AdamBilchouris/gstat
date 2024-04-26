@@ -8,6 +8,8 @@ double fn_gaussian(double h, double *r);
 double fn_exclass(double h, double *r);
 double fn_matern(double h, double *r);
 double fn_matern2(double h, double *r);
+double fn_bessel2(double h, double *r);
+double fn_cauchy(double h, double *r);
 double fn_exponential(double h, double *r);
 double fn_pentaspherical(double h, double *r);
 double fn_periodic(double h, double *r);

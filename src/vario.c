@@ -39,6 +39,8 @@ const V_MODEL v_models[] = { /* the variogram model catalogue: */
 	{	EXCLASS,        "Exc", "Exclass (Exponential class/stable)", fn_exclass, NULL },
 	{	MATERN,         "Mat", "Mat (Matern)", fn_matern, NULL },
 	{	STEIN,          "Ste", "Mat (Matern, M. Stein's parameterization)", fn_matern2, NULL },
+	{	BESSEL2,        "Be2", "Be2 (Bessel, RandomField parameterization)", fn_bessel2, NULL },
+	{	CAUCHY,         "Cau", "Bau (Cauchy, RandomField parameterization)", fn_cauchy, NULL },
 	{ 	CIRCULAR,       "Cir", "Cir (circular)", fn_circular, NULL },
 	{	LINEAR,         "Lin", "Lin (linear)",  fn_linear, da_fn_linear },
 		/* one-parameter (a = 0), or two-parameter with sill */
@@ -234,6 +236,8 @@ void update_variogram(VARIOGRAM *vp) {
 				p->model == HOLE || p->model == WAVE || /* more??? */
 				p->model == MATERN ||
 				p->model == STEIN ||
+                p->model == BESSEL2 ||
+                p->model == CAUCHY ||
 				(p->model == LINEAR && p->range[0] == 0)) 
 					/* sill is reached asymptotically or oscillates */
 			vp->max_range = DBL_MAX;

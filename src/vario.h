@@ -64,6 +64,8 @@ typedef enum {
 	EXCLASS,
 	MATERN,
 	STEIN,
+	BESSEL2,
+	CAUCHY,
 	CIRCULAR,
 	LINEAR, 
 	BESSEL, 

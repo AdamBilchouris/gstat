@@ -117,6 +117,10 @@ as.vgm.variomodel = function(m) {
 		model = "Sph"
 	else if (m$cov.model == "pure.nugget")
 		return(vgm(m$nugget + m$cov.pars[1], "Nug", 0))
+    else if (m$cov.model == "bessel2")
+        model = "Be2"
+    else if (m$cov.model == "cauchy")
+        model = "Cau"
 	else
 		stop("variogram model not supported")
 # "cauchy",

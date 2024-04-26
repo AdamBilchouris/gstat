@@ -275,3 +275,42 @@ double fn_matern2(double h, double *p) {
 		return 1.0;
 	return 1.0 - bes * mult;
 }
+
+/*
+Bessel covariance function
+C(h; v) = 2^(v) * J_{v}(h) * Gamma(v + 1) / x^(v)
+First parameter = range r[0]
+Second = v (nu) (kappa in vgm) r[1]
+ */
+double fn_bessel2(double h, double *r) {
+
+    double hr, nu;
+    if(h == 0.0)
+        return 0;
+    hr = h / r[0];
+    nu = r[1];
+
+    double returnVal = pow(2, nu) * bessel_j(hr, nu) * gammafn(1 + nu) * pow(hr, -nu);
+    if(!isfinite(returnVal))
+        return 0;
+    return 1 - returnVal;
+}
+
+/*
+Cauchy covariance function
+C(h; gamma) = (1 + h^2 / h)^(-gamma)
+First parameter = range r[1]
+Second = gamma (kappa in vgm) r[1]
+ */
+double fn_cauchy(double h, double *r) {
+
+    double hr, gamma;
+    if(h == 0.0)
+        return 0;
+    hr = h / r[0];
+    gamma = r[1];
+    double returnVal = pow(1 + pow(hr, 2), -gamma);
+    if(!isfinite(returnVal))
+        return 0;
+    return 1 - returnVal;
+}
